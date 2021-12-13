@@ -1,7 +1,9 @@
 //global variables
-var name = 'Max'
-var age = 29
-var hasHobbies = true;
+const name = 'Max' //var is kind of outdated. use let or const instead.
+let age = 29
+const hasHobbies = true;
+
+age = 30;
 
 console.log(name);
 
