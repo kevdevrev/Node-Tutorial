@@ -10,13 +10,32 @@ const person = {
     }
 }
 
+//also works on objects SPREAD OPERATOR
+const copiedPerson = {...person};
+console.log(copiedPerson);
+
 const hobbies = ['Sports', 'Cooking'];
-// for(let hobby of hobbies) {
-//     console.log(hobbies);
-// }
-//map is great and one of many methods provided.
-// console.log(hobbies.map(hobby => {return 'Hobby:' + hobby;}));//will return a new array once edited
-// //will update each elemnt one by one.
-// console.log(hobbies);
-hobbies.push('Programming');
-console.log(hobbies);
+
+
+//slice copies an array
+// const copiedArray = hobbies.slice();
+//this will give an array with another array in it. Its not a copy.
+//its an array where the first element is the other array. Nested array.
+// const copiedArray = [hobbies];
+
+//SPREAD OPERATOR
+//it pulls out all the elements of the array or porperties of an object
+//and puts it to whereever is around that spread operator.
+const copiedArray = [...hobbies];
+console.log(copiedArray);
+
+//not flexible. Lets use the rest operator instead.
+// const toArray = (arg1,arg2,arg3) => {
+//     return[arg1, arg2, arg3];
+// };
+//REST OPERATOR
+const toArray = (...args) => {
+    return args;
+};
+
+console.log(toArray(1,2,3,4));
