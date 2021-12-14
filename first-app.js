@@ -15,6 +15,8 @@ const hobbies = ['Sports', 'Cooking'];
 //     console.log(hobbies);
 // }
 //map is great and one of many methods provided.
-console.log(hobbies.map(hobby => {return 'Hobby:' + hobby;}));//will return a new array once edited
-//will update each elemnt one by one.
+// console.log(hobbies.map(hobby => {return 'Hobby:' + hobby;}));//will return a new array once edited
+// //will update each elemnt one by one.
+// console.log(hobbies);
+hobbies.push('Programming');
 console.log(hobbies);
