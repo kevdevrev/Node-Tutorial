@@ -27,17 +27,15 @@ const server = http.createServer((req, res) => {
             const parsedBody = Buffer.concat(body).toString();//will concat all the body to the Buffer, we convert it to a string for our purpose here
             console.log(parsedBody);//this we can work with.
             const message = parsedBody.split('=')[1];
-            fs.writeFileSync('message.txt', message); //this depends on the data, so it has to be here.
-            //we moved it here cause we want it to occur with this listener
-            res.statusCode = 302;
-            res.setHeader('Location', '/');
-            return res.end();
+            //Sync means synchronus, which will block code execution until this file is created. We don't want that.
+            fs.writeFile('message.txt', message, (err) => {
+                //code moved here because we want it to occur once the file is done being used.
+                res.statusCode = 302;
+                res.setHeader('Location', '/');
+                return res.end();
+            }); //we pass an extra function which will also hold an error if it occurs.
+            //The method though is used to run code that needs to occur AFTER we are done with the file.
         })
-        //below actually occurs before the above, because node does not wait and pause, it registers stuff
-        //to-be-executed action.
-        // res.statusCode = 302;
-        // res.setHeader('Location', '/');
-        // return res.end();
     }
     //this won't occur if we return res.on('end...) at the same tiem, but will occur before it, unless we return that res.on(end)
     //sending a header back to the browser, basically the content type is text/html
