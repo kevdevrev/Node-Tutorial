@@ -10,6 +10,7 @@ const requestHandler = (req,res) => {
         res.write('<body><form action="/message" method="POST"><input type ="text" name="message"><button type="submit">Send</button></form></body>')
         res.write('</html>');
         //we want to quit before the other res writes / headers occur after the res end.
+        //if we dont return this, we will get a header error as it will run whats way down there.
         return res.end();
     }
     //we ensure the page is on /message and it is recieving a POST request.
