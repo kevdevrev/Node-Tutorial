@@ -1,0 +1,24 @@
+{
+  "name": "node-tutorial",
+  "version": "1.0.0",
+  "description": "Node.js Course",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "start-server": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kevdevrev/Node-Tutorial.git"
+  },
+  "author": "Kevin Galeano",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kevdevrev/Node-Tutorial/issues"
+  },
+  "homepage": "https://github.com/kevdevrev/Node-Tutorial#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
