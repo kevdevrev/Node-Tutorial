@@ -1,25 +1,16 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 //creates an express application.
 const app = express();//this is a valid request handler
+//our file import
+const adminRoutes = require('./routes/admin');
+const shopRoutes = require('./routes/shop');
 
-//if we want a middleware to apply to all requests, then:
-app.use('/', (req,res,next) => {
-    console.log('This always runs!');
-    next();
-})
+//will parse forms
+app.use(bodyParser.urlencoded({extended: false})); //we put extended false because we don't want it to parse nondefault features.
 
-
-//we want to filter for requests. Put the specific ones first. How we seperate middlewares.
-app.use('/add-product',(req, res, next) => { //next is a function that will be passed to the anon function, and the anon function is passed to the use function. weird.
-    console.log('in the add product');
-    res.send('<h1>The "Add Product" page!</h1>');//allows us to send a response, and attach a body which is of type 'any'
-
-});
-
-app.use('/',(req, res, next) => { //next is a function that will be passed to the anon function, and the anon function is passed to the use function. weird.
-    console.log('in the middleware');
-    res.send('<h1>hello from express!</h1>');//allows us to send a response, and attach a body which is of type 'any'
-
-});
+//we can use our admin routes easily doing this.
+app.use(adminRoutes);
+app.use(shopRoutes);
 
 app.listen(3000);
