@@ -1,4 +1,3 @@
-const http = require('http');
 //3rd party packages
 const express = require('express');
 //creates an express application.
@@ -24,6 +23,6 @@ app.use((req, res, next) => { //next is a function that will be passed to the an
 
 });
 
-const server = http.createServer(app);
-
-server.listen(3000);
+// server.listen(3000);
+//we can use app.listen() instead of http....
+app.listen(3000);
