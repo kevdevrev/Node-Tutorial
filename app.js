@@ -10,7 +10,7 @@ const shopRoutes = require('./routes/shop');
 app.use(bodyParser.urlencoded({extended: false})); //we put extended false because we don't want it to parse nondefault features.
 
 //we can use our admin routes easily doing this.
-app.use(adminRoutes);
+app.use('/admin', adminRoutes); //now only routes with the starting directory admin will run here
 app.use(shopRoutes);
 //will handle anything...
 app.use((req,res,next) => {
