@@ -12,5 +12,10 @@ app.use(bodyParser.urlencoded({extended: false})); //we put extended false becau
 //we can use our admin routes easily doing this.
 app.use(adminRoutes);
 app.use(shopRoutes);
+//will handle anything...
+app.use((req,res,next) => {
+    //status will set our status code.
+  res.status(404).send('<H1>404 Page not found</H1>')  
+})
 
 app.listen(3000);
