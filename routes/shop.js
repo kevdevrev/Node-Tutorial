@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const router = express.Router();
+const rootDir = require('../util/path');
 
 
 //get and post use an exact match for the path
@@ -8,7 +9,7 @@ router.get('/',(req, res, next) => { //next is a function that will be passed to
     //__dirname is a variable which holds the absolute path on the os of this project folder
     //it gives us the path of where we use it
     //../ makes it go up one level in the directory.
-    res.sendFile(path.join(__dirname, '..', 'views', 'shop.html'));
+    res.sendFile(path.join(rootDir, 'views', 'shop.html'));
 
 
 });
