@@ -13,7 +13,7 @@ router.get('/', (req, res, next) => {
     //res.sendFile(path.join(rootDir, 'views', 'shop.html'));
     //since we set pug as our default rendering engine, we don't need to specifify .pug
     //we can pass in a key value pair javascript object to pug
-    res.render('shop', {prods: products, docTitle: 'Shop'});
+    res.render('shop', {prods: products, docTitle: 'Shop', path: '/', pageTitle: 'Shop'});
 });
 
 module.exports = router;
