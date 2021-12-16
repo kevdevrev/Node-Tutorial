@@ -1,24 +1,24 @@
-const express = require('express');
 const path = require('path');
 
-//import helper function to get ther oot dir
+const express = require('express');
+
 const rootDir = require('../util/path');
 
 const router = express.Router();
 
-//router can use post, get, use etc.
-//we replace app with router here.
-router.get('/add-product',(req, res, next) => { 
-    res.sendFile(path.join(rootDir, 'views', 'add-product.html'));
+const products = [];
 
+// /admin/add-product => GET
+router.get('/add-product', (req, res, next) => {
+  res.sendFile(path.join(rootDir, 'views', 'add-product.html'));
 });
 
-//we changed it to post, so that it only takes post requests.
-router.post('/product', (req,res,next) => {
-    console.log(req.body);
-    //go back to '/' route after logic done
+// /admin/add-product => POST
+router.post('/add-product', (req, res, next) => {
+    products.push({title: req.body.title});
     res.redirect('/');
 });
 
-//exports these routes
-module.exports = router;
+//export multiple
+exports.routes = router;
+exports.products = products;

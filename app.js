@@ -4,8 +4,11 @@ const bodyParser = require('body-parser');
 //    module.exports = path.dirname(require.main.filename);
 //creates an express application.
 const app = express();//this is a valid request handler
+//we can set a global configuration value on our express project
+app.set('view engine', 'pug');
+app.set('views', 'views');
 //our file import
-const adminRoutes = require('./routes/admin');
+const adminData = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
 
 //will parse forms
@@ -16,7 +19,7 @@ app.use(bodyParser.urlencoded({extended: false})); //we put extended false becau
 //anything that tries to find a file, will be sent here and if its not here they cant get it.
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/admin', adminRoutes); 
+app.use('/admin', adminData.routes); 
 app.use(shopRoutes);
 
 //will handle anything...
