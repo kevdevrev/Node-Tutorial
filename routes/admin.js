@@ -1,12 +1,15 @@
 const express = require('express');
 const path = require('path');
 
+//import helper function to get ther oot dir
+const rootDir = require('../util/path');
+
 const router = express.Router();
 
 //router can use post, get, use etc.
 //we replace app with router here.
 router.get('/add-product',(req, res, next) => { 
-    res.sendFile(path.join(__dirname, '../', 'views', 'add-product.html'));
+    res.sendFile(path.join(rootDir, 'views', 'add-product.html'));
 
 });
 

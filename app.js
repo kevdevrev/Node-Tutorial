@@ -1,6 +1,7 @@
 const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
+//    module.exports = path.dirname(require.main.filename);
 //creates an express application.
 const app = express();//this is a valid request handler
 //our file import
