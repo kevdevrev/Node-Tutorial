@@ -10,10 +10,15 @@ const shopRoutes = require('./routes/shop');
 
 //will parse forms
 app.use(bodyParser.urlencoded({extended: false})); //we put extended false because we don't want it to parse nondefault features.
+//we want to statically server files
+//we want to grant access to the public folder
+//with this, users should be able to access the public path
+//anything that tries to find a file, will be sent here and if its not here they cant get it.
+app.use(express.static(path.join(__dirname, 'public')));
 
-//we can use our admin routes easily doing this.
-app.use('/admin', adminRoutes); //now only routes with the starting directory admin will run here
+app.use('/admin', adminRoutes); 
 app.use(shopRoutes);
+
 //will handle anything...
 app.use((req,res,next) => {
     //status will set our status code.
