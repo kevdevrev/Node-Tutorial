@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 //creates an express application.
@@ -15,7 +16,7 @@ app.use(shopRoutes);
 //will handle anything...
 app.use((req,res,next) => {
     //status will set our status code.
-  res.status(404).send('<H1>404 Page not found</H1>')  
+  res.status(404).sendFile(path.join(__dirname, 'views', '404.html'));
 })
 
 app.listen(3000);
