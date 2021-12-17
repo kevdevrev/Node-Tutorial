@@ -1,11 +1,10 @@
 const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
-//    module.exports = path.dirname(require.main.filename);
-//creates an express application.
-const app = express();//this is a valid request handler
-//we can set a global configuration value on our express project
-app.set('view engine', 'pug');
+
+const app = express();
+
+app.set('view engine', 'ejs');
 app.set('views', 'views');
 //our file import
 const adminData = require('./routes/admin');
