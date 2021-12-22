@@ -1,3 +1,4 @@
+const fs = require('fs')
 //use capital for classes
 const Product = require('../models/product')
 
