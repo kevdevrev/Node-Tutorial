@@ -35,6 +35,8 @@ module.exports = class Product {
 
     //saving our product to the array
     save() {
+        //generate a "unqiue" id (not really)
+        this.id = Math.random().toString();
         //we don't forward the callback here.
         //we make an anonymous function which recieves the products
         //always use arrow functions so it doens't lose its context
