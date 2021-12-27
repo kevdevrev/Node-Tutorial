@@ -25,8 +25,12 @@ const getProductsFromFile = (cb) => {
 
 //this represents a single entity, its a constructor for a product
 module.exports = class Product {
-    constructor(title) {
+    
+    constructor(title, imageUrl, description, price) {
         this.title = title;
+        this.imageUrl = imageUrl;
+        this. description = description;
+        this.price = price;
     }
 
     //saving our product to the array

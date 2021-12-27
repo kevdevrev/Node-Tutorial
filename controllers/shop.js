@@ -2,24 +2,8 @@ const fs = require('fs')
 //use capital for classes
 const Product = require('../models/product')
 
-exports.getAddProductPage =  (req, res, next) => {
-  //res.sendFile(path.join(rootDir, 'views', 'add-product.html'));
-  res.render('add-product', {
-    pageTitle: 'Add Product',
-     path: '/admin/add-product',
-     formsCSS: true,
-     productsCSS: true,
-     activeAddProduct: true
-    });
-}
 
-exports.postAddProduct = (req, res, next) => {
-    //create a new object based off imported class
-    const product = new Product(req.body.title);
-    product.save(); // now we save the product in our array.
-    res.redirect('/');
-}
-
+//Product List Renderer
 exports.getProducts = (req, res, next) => {
     //we pass in a function where we know we will eventually get our products
     //we don't need to store it here because fetchAll does not return anything.
@@ -28,10 +12,10 @@ exports.getProducts = (req, res, next) => {
     //same logic readfile uses, but we defined our self. It uses a callback.
     //basically, we don't render our shop until we fetch all of our products.
     Product.fetchAll((products) => {
-        res.render('shop', {
+        res.render('shop/product-list', {
             prods: products,
-            docTitle: 'Shop', 
-            path: '/', 
+            docTitle: 'All Products', 
+            path: '/products', 
             pageTitle: 'Shop'});
     }); //get an array of all objects
     // res.render('shop', {
@@ -39,4 +23,29 @@ exports.getProducts = (req, res, next) => {
     //     docTitle: 'Shop', 
     //     path: '/', 
     //     pageTitle: 'Shop'});
+}
+
+//Index Renderer
+exports.getIndex = (req, res, next) => {
+    Product.fetchAll((products) => {
+        res.render('shop/index', {
+            prods: products,
+            docTitle: 'Shop', 
+            path: '/', 
+            pageTitle: 'Shop'});
+    });
+}
+
+exports.getCart = (req, res, next) => {
+    res.render('shop/cart', {
+        path: '/cart',
+        pageTitle: 'Your Cart'
+    });
+}
+
+exports.getCheckout = (req, res, next) => {
+    res.render('shop/checkout', {
+        path: '/checkout',
+        pageTitle: 'Checkout'
+    });
 }
