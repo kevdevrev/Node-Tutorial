@@ -59,6 +59,13 @@ exports.getCart = (req, res, next) => {
     });
 }
 
+exports.postCart = (req,res,next) => {
+    //we use the request body to get the value sent to us via post
+    const prodId = req.body.productId;
+    console.log(prodId)
+    res.redirect('/cart')
+}
+
 exports.getOrders = (req, res, next) => {
     res.render('shop/orders', {
         path: '/orders',

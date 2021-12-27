@@ -20,6 +20,9 @@ router.get('/products/:productId', shopController.getProduct)
 
 router.get('/cart', shopController.getCart)
 
+// implement a post request for cart
+router.post('/cart', shopController.postCart)
+
 router.get('/orders', shopController.getOrders)
 
 router.get('/checkout', shopController.getCheckout)
