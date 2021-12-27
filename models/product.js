@@ -64,4 +64,11 @@ module.exports = class Product {
         getProductsFromFile(cb);
     }
 
+    static findById(id, cb) {
+        getProductsFromFile(products => {
+            //find is a native JS function. It returns once it finds a match with a callback.
+            const product = products.find(p => p.id === id);
+            cb(product);
+        })
+    }
 }

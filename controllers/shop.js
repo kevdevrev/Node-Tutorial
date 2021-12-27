@@ -29,8 +29,16 @@ exports.getProducts = (req, res, next) => {
 
 exports.getProduct = (req,res,next) => {
     const prodId = req.params.productId;
-    console.log(prodId);
-    res.redirect('/');
+    Product.findById(prodId, product => {
+        //the {} inside is a javascript object
+        //put the product we retrieve inside this renderer
+        //once it does find it, it calls this rendered and then calls back
+        res.render('shop/product-detail', {
+            product: product,
+            pageTitle: product.title,
+            path: '/products'
+        });
+    });
 }
 
 //Index Renderer
