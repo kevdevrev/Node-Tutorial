@@ -1,3 +1,5 @@
+const req = require('express/lib/request');
+const res = require('express/lib/response');
 const fs = require('fs')
 //use capital for classes
 const Product = require('../models/product')
@@ -23,6 +25,12 @@ exports.getProducts = (req, res, next) => {
     //     docTitle: 'Shop', 
     //     path: '/', 
     //     pageTitle: 'Shop'});
+}
+
+exports.getProduct = (req,res,next) => {
+    const prodId = req.params.productId;
+    console.log(prodId);
+    res.redirect('/');
 }
 
 //Index Renderer
