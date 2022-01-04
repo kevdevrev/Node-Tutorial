@@ -4,19 +4,19 @@ const path = require('path');
 
 //global helper constant
 const p = path.join(
-    path.dirname(process.mainModule.filename), 
-    'data', 
+    path.dirname(process.mainModule.filename),
+    'data',
     'products.json'
-    );
+);
 
 //helper function
 //it RECIEVES a callback
 const getProductsFromFile = (cb) => {
     fs.readFile(p, (err, fileContent) => {
-        if(err){
+        if (err) {
             cb([]);
             // return [];
-        }else{
+        } else {
             cb(JSON.parse(fileContent));
         }
         // return JSON.parse(fileContent);
@@ -25,32 +25,43 @@ const getProductsFromFile = (cb) => {
 
 //this represents a single entity, its a constructor for a product
 module.exports = class Product {
-    
-    constructor(title, imageUrl, description, price) {
+
+    constructor(id, title, imageUrl, description, price) {
+        this.id = id;
         this.title = title;
         this.imageUrl = imageUrl;
-        this. description = description;
+        this.description = description;
         this.price = price;
     }
 
     //saving our product to the array
     save() {
-        //generate a "unqiue" id (not really)
-        this.id = Math.random().toString();
-        //we don't forward the callback here.
-        //we make an anonymous function which recieves the products
-        //always use arrow functions so it doens't lose its context
-        //the callback returns that products here.
+
         getProductsFromFile(products => {
-            //we run this, then we get our callback after this code completes,
-            //so we will have an updated array json thing.
-            products.push(this);
-            //converts our product object array to a json
-            //may give an error so we have a callback function to handle /check that
-            //writes to file
-            fs.writeFile(p, JSON.stringify(products), (err) => {
-                console.log(err);
-            });            
+            if (this.id) {
+                const existingProductIndex = products.findIndex(prod => prod.id === this.id);
+                const updatedProducts = [...products];
+                updatedProducts[existingProductIndex] = this;
+                fs.writeFile(p, JSON.stringify(updatedProducts), (err) => {
+                    console.log(err);
+                });
+            } else {
+                //generate a "unqiue" id (not really)
+                this.id = Math.random().toString();
+                //we don't forward the callback here.
+                //we make an anonymous function which recieves the products
+                //always use arrow functions so it doens't lose its context
+                //the callback returns that products here.
+                //we run this, then we get our callback after this code completes,
+                //so we will have an updated array json thing.
+                products.push(this);
+                //converts our product object array to a json
+                //may give an error so we have a callback function to handle /check that
+                //writes to file
+                fs.writeFile(p, JSON.stringify(products), (err) => {
+                    console.log(err);
+                });
+            }
         });
     }
 

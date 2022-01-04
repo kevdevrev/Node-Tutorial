@@ -39,7 +39,7 @@ module.exports = class Cart {
         //we add a plus in front of product price to ensure it stays as a number.
         cart.totalPrice = cart.totalPrice + +productPrice;
         
-        fs.writeFile(p, JSON.stringify(cart), err => {
+        fs.writeFile(p, JSON.stringify(cart), (err) => {
             console.log(err);
           });
         });

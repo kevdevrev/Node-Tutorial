@@ -21,8 +21,8 @@
                         <p class="product__description"><%= product.description %></p>
                     </div>
                     <div class="card__actions">
-                        <!-- send a simple get request for editing-->
-                        <a href="/admin/edit-product" class="btn">Edit</a>
+                        <!-- send a simple get request for editing with a query parameter-->
+                        <a href="/admin/edit-product/<%= product.id %>?edit=true" class="btn">Edit</a>
                         <!--  a simple delete should not send a get request so we wrap it in a form-->
                         <form action="/admin/delete-product" method = "POST">
                             <button class="btn" type="submit">Delete</button>
