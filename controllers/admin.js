@@ -65,3 +65,10 @@ exports.postEditProduct = (req, res, next) => {
             pageTitle: 'Admin Products'});
     });
   }
+
+  exports.postDeleteProduct = (req, res, next) => {
+    const prodId = req.body.productId;
+    Product.deleteById(prodId);
+    //should hav a callback tbh to make sure it occurs once we delete
+    res.redirect('/admin/products')
+  }

@@ -25,6 +25,9 @@
                         <a href="/admin/edit-product/<%= product.id %>?edit=true" class="btn">Edit</a>
                         <!--  a simple delete should not send a get request so we wrap it in a form-->
                         <form action="/admin/delete-product" method = "POST">
+                            <!-- make a route to handle this -->
+                            <!-- have the product id usable in the ejs -->
+                            <input type="hidden" value="<%= product.id %>" name="productId">
                             <button class="btn" type="submit">Delete</button>
                         </form>
                     </div>

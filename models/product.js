@@ -2,6 +2,8 @@
 const fs = require('fs');
 const path = require('path');
 
+const Cart = require('./cart');
+
 //global helper constant
 const p = path.join(
     path.dirname(process.mainModule.filename),
@@ -63,6 +65,23 @@ module.exports = class Product {
                 });
             }
         });
+    }
+
+
+    static deleteById(id){
+        getProductsFromFile(products => {
+            const product = products.find(prod => prod.id === id);
+            //filter out the id we wanna delete
+            const updatedProducts = products.filter(p => p.id !== id);
+
+            fs.writeFile(p, JSON.stringify(updatedProducts), err => {
+                if(!err){
+                    //todo: delete from cart if its there
+                    Cart.deleteProduct(id, product.price);
+                }
+            })
+        })
+
     }
 
     //not called on an instance of an object so static, we can call directly on the class itself and not an object.
